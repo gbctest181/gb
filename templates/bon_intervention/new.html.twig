@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New BonIntervention{% endblock %}
+
+{% block body %}
+    <h1>Create new BonIntervention</h1>
+
+    {{ include('bon_intervention/_form.html.twig') }}
+
+    <a href="{{ path('bon_intervention_index') }}">back to list</a>
+{% endblock %}

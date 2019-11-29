@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Procesverbal index{% endblock %}
+
+{% block body %}
+    <h1>Procesverbal index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pdf</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for procesverbal in procesverbals %}
+            <tr>
+                <td>{{ procesverbal.id }}</td>
+                <td>{{ procesverbal.pdf }}</td>
+                <td>
+                    <a href="{{ path('procesverbal_show', {'id': procesverbal.id}) }}">show</a>
+                    <a href="{{ path('procesverbal_edit', {'id': procesverbal.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('procesverbal_new') }}">Create new</a>
+{% endblock %}

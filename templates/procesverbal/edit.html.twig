@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Procesverbal{% endblock %}
+
+{% block body %}
+    <h1>Edit Procesverbal</h1>
+
+    {{ include('procesverbal/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('procesverbal_index') }}">back to list</a>
+
+    {{ include('procesverbal/_delete_form.html.twig') }}
+{% endblock %}

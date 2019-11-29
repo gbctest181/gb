@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Procesverbal{% endblock %}
+
+{% block body %}
+    <h1>Create new Procesverbal</h1>
+
+    {{ include('procesverbal/_form.html.twig') }}
+
+    <a href="{{ path('procesverbal_index') }}">back to list</a>
+{% endblock %}

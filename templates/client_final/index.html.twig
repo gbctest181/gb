@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ClientFinal index{% endblock %}
+
+{% block body %}
+    <h1>ClientFinal index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Raison_sociale</th>
+                <th>Responsable</th>
+                <th>Adresse</th>
+                <th>Codepostal</th>
+                <th>Ville</th>
+                <th>Telephone</th>
+                <th>Fax</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client_final in client_finals %}
+            <tr>
+                <td>{{ client_final.id }}</td>
+                <td>{{ client_final.raisonSociale }}</td>
+                <td>{{ client_final.responsable }}</td>
+                <td>{{ client_final.adresse }}</td>
+                <td>{{ client_final.codepostal }}</td>
+                <td>{{ client_final.ville }}</td>
+                <td>{{ client_final.telephone }}</td>
+                <td>{{ client_final.fax }}</td>
+                <td>{{ client_final.mobile }}</td>
+                <td>{{ client_final.email }}</td>
+                <td>
+                    <a href="{{ path('client_final_show', {'id': client_final.id}) }}">show</a>
+                    <a href="{{ path('client_final_edit', {'id': client_final.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_final_new') }}">Create new</a>
+{% endblock %}

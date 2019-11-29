@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Procesverbal{% endblock %}
+
+{% block body %}
+    <h1>Procesverbal</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ procesverbal.id }}</td>
+            </tr>
+            <tr>
+                <th>Pdf</th>
+                <td>{{ procesverbal.pdf }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('procesverbal_index') }}">back to list</a>
+
+    <a href="{{ path('procesverbal_edit', {'id': procesverbal.id}) }}">edit</a>
+
+    {{ include('procesverbal/_delete_form.html.twig') }}
+{% endblock %}

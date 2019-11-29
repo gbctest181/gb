@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BonIntervention index{% endblock %}
+
+{% block body %}
+    <h1>BonIntervention index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pdf</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bon_intervention in bon_interventions %}
+            <tr>
+                <td>{{ bon_intervention.id }}</td>
+                <td>{{ bon_intervention.pdf }}</td>
+                <td>
+                    <a href="{{ path('bon_intervention_show', {'id': bon_intervention.id}) }}">show</a>
+                    <a href="{{ path('bon_intervention_edit', {'id': bon_intervention.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('bon_intervention_new') }}">Create new</a>
+{% endblock %}
