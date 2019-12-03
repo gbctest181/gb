@@ -22,7 +22,7 @@ class InterventionType extends AbstractType
             ->add('representant')
             ->add('fonction')
             ->add('fk_client')
-            ->add('fk_user')
+//            ->add('fk_user')
         ;
     }
 

@@ -17,6 +17,8 @@ class MaterielController extends AbstractController
 {
     /**
      * @Route("/", name="materiel_index", methods={"GET"})
+     * @param MaterielRepository $materielRepository
+     * @return Response
      */
     public function index(MaterielRepository $materielRepository): Response
     {
@@ -27,6 +29,8 @@ class MaterielController extends AbstractController
 
     /**
      * @Route("/new", name="materiel_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class MaterielController extends AbstractController
 
     /**
      * @Route("/{id}", name="materiel_show", methods={"GET"})
+     * @param Materiel $materiel
+     * @return Response
      */
     public function show(Materiel $materiel): Response
     {
@@ -60,6 +66,9 @@ class MaterielController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="materiel_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Materiel $materiel
+     * @return Response
      */
     public function edit(Request $request, Materiel $materiel): Response
     {
@@ -80,6 +89,9 @@ class MaterielController extends AbstractController
 
     /**
      * @Route("/{id}", name="materiel_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Materiel $materiel
+     * @return Response
      */
     public function delete(Request $request, Materiel $materiel): Response
     {

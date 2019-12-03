@@ -17,6 +17,8 @@ class PieceController extends AbstractController
 {
     /**
      * @Route("/", name="piece_index", methods={"GET"})
+     * @param PieceRepository $pieceRepository
+     * @return Response
      */
     public function index(PieceRepository $pieceRepository): Response
     {
@@ -27,6 +29,8 @@ class PieceController extends AbstractController
 
     /**
      * @Route("/new", name="piece_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class PieceController extends AbstractController
 
     /**
      * @Route("/{id}", name="piece_show", methods={"GET"})
+     * @param Piece $piece
+     * @return Response
      */
     public function show(Piece $piece): Response
     {
@@ -60,6 +66,9 @@ class PieceController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="piece_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Piece $piece
+     * @return Response
      */
     public function edit(Request $request, Piece $piece): Response
     {
@@ -80,6 +89,9 @@ class PieceController extends AbstractController
 
     /**
      * @Route("/{id}", name="piece_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Piece $piece
+     * @return Response
      */
     public function delete(Request $request, Piece $piece): Response
     {

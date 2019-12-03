@@ -1,0 +1,219 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PROCES VERBAl{% endblock %}
+
+{% block body %}
+    <header>
+        <div class="Header">
+            <div class="Logo"></div>
+            <div class="Titre">
+                <h1>PROCES VERBAL</h1>
+            </div>
+        </div>
+    </header>
+
+    <article class="super-box bg bg-img-6" data-stellar-background-ratio="-0.2">
+        <form class="table-dark">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="group col-md-6">
+                                        Client : {{ intervention.nom }}
+                            </div>
+                        </div>
+                        <div class="group">
+                                     Adresse : {{ intervention.adresse }}
+                        </div>
+                        <div class="row">
+                            <div class="group">
+                                        CP : {{ intervention.codepostal }}
+                            </div>
+                            <div class="group col">
+                                        Ville : {{ intervention.ville }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                <div class="form-group col-md-6">
+                    <label for="descriptif">Objet du marché</label>
+                    <input type="text" class="form-control" id="descriptif">
+                </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-5">
+                    <div class="form-group col-md-6">
+                        Devis n°{{ intervention.id }}
+                    </div>
+                        <div class="row">
+                            <div class="grid_3">
+                                <div class="form-row">Réception
+                                    <div class="form-group col-md-12 ">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="reception" id="definitive1" value="option1" checked>
+                                            <label class="form-check-label" for="definitive1">
+                                        Définitive
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 ">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="reception" id="patrielle1" value="option2">
+                                            <label class="form-check-label" for="patrielle1">
+                                        Partielle
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                        <div class="form-row">Mise en service
+                            <div class="form-group col-md-12 ">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="service" id="definitive2" value="option3" checked>
+                                    <label class="form-check-label" for="definitive2">
+                                        Définitive
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group   col-md-12 ">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="service" id="patrielle2" value="option4">
+                                    <label class="form-check-label" for="patrielle2">
+                                        Partielle
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                         <div class="form-group">
+                                {#             le bouton apparait si le check est activé                #}
+                             <div class="form-check">
+                                 <input class="form-check-input" type="checkbox" id="reserve">
+                                 <label class="form-check-label" for="gridCheck">
+                                Réserve (voir observation)
+                                 </label>
+                             </div>
+                         </div>
+                    <button type="button" class="btn btn-primary">Observations</button>
+                </div>
+            </div>
+        </form>
+    </article>
+
+<div class="container">
+
+    <div class="clauses">
+            <p>Le clients atteste, par le présent, que les matériels livrés et installés par GB CONCEPT :</p>
+            <p> <span>&#128073;&#127996;</span>sont conformes aux caractéristiques indiquées dans les documents précisés en référence.</p>
+            <p><span>&#128073;&#127996;</span> sont en bon état de fonctionnement.</p>
+            <p><b><U>Rappel</U> : Les matériels fournis ce jour demeurent la propriété exclusive de l'entreprise GB CONCEPT jusqu'au paiement complet des matériels et prestations par le client.</b></p>
+            <p> <b><U>Responsabilité :</U></b> A compter de ce jour, le client assure l'entière responsabilité des matériels, y compris l'ensemble des obligations d'assurance.</p>
+
+        </div>
+</div>
+    <div class="container-fluid table-dark">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-3">
+                <h4>GB CONCEPT</h4>
+                Nom : {#{{ user.username }}#}
+                <div class="Signature">
+                    <canvas id="signG" width="165" height="48" >Signature</canvas>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col-3">
+                Établi le {{ "now"|date("d/m/Y") }}
+                <br>
+                <button type="submit" class="btn btn-success ">Envoyer</button>
+            </div>
+
+            <div class="col"></div>
+            <div class="col-3">
+                <h4>LE CLIENT</h4>
+                Nom : {{ intervention.nom }}
+                <div class="Signature">
+                    <canvas id="signC" width="165" height="48" >Signature</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="retour">
+        <button type="button" class="btn btn-danger"><a href="javascript:history.go(-1)">Retour</a></button>
+    </div>
+
+
+<footer id="footer">
+    <section class="fbox-1 table-dark">
+      <div class="container">
+        <div class="row">
+          <div class="grid_3">
+          <!--=======================-->
+            <div class="fblock-1 wow fadeIn"><a href="./"><img src="/public/images/logo.jpg" alt="" ></a></div>
+          <!--=======================-->
+          </div>
+          <div class="preffix_2 grid_6">
+            <!--=======================-->
+            <div class="fblock-2">
+              <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
+                <p>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO.</p>
+                <p>Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+
+{#<table class="table">#}
+{#    <tbody>#}
+{#    <tr>#}
+{#        <th>Id</th>#}
+{#        <td>{{ intervention.id }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Nom</th>#}
+{#        <td>{{ intervention.nom }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Adresse</th>#}
+{#        <td>{{ intervention.adresse }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Codepostal</th>#}
+{#        <td>{{ intervention.codepostal }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Ville</th>#}
+{#        <td>{{ intervention.ville }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Telephone</th>#}
+{#        <td>{{ intervention.telephone }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Mobile</th>#}
+{#        <td>{{ intervention.mobile }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Email</th>#}
+{#        <td>{{ intervention.email }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Representant</th>#}
+{#        <td>{{ intervention.representant }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Fonction</th>#}
+{#        <td>{{ intervention.fonction }}</td>#}
+{#    </tr>#}
+{#    </tbody>#}
+{#</table>#}
+
+{% endblock %}

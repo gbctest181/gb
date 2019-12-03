@@ -3,49 +3,55 @@
 {% block title %}Intervention index{% endblock %}
 
 {% block body %}
-    <h1>Intervention index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>Codepostal</th>
-                <th>Ville</th>
-                <th>Telephone</th>
-                <th>Mobile</th>
-                <th>Email</th>
-                <th>Representant</th>
-                <th>Fonction</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for intervention in interventions %}
-            <tr>
-                <td>{{ intervention.id }}</td>
-                <td>{{ intervention.nom }}</td>
-                <td>{{ intervention.adresse }}</td>
-                <td>{{ intervention.codepostal }}</td>
-                <td>{{ intervention.ville }}</td>
-                <td>{{ intervention.telephone }}</td>
-                <td>{{ intervention.mobile }}</td>
-                <td>{{ intervention.email }}</td>
-                <td>{{ intervention.representant }}</td>
-                <td>{{ intervention.fonction }}</td>
-                <td>
-                    <a href="{{ path('intervention_show', {'id': intervention.id}) }}">show</a>
-                    <a href="{{ path('intervention_edit', {'id': intervention.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h1 class="text-center" >Intervention index</h1>
+<div class="container">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-dark table-striped table-hover shadow p-3 mb-5 md-5 rounded">
+            <thead>
+                <tr>
+                    <th class="text-center">Nom</th>
+                    <th class="text-center">Adresse</th>
+                    <th class="text-center">Codepostal</th>
+                    <th class="text-center">Ville</th>
+                    <th class="text-center">Telephone</th>
+                    <th class="text-center">Mobile</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Representant</th>
+                    <th class="text-center">Fonction</th>
+                    <th class="text-center">actions</th>
+                    <th class="text-center">Interventions </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for intervention in interventions %}
+                <tr>
+                    <td class="text-center">{{ intervention.nom }}</td>
+                    <td class="text-center">{{ intervention.adresse }}</td>
+                    <td class="text-center">{{ intervention.codepostal }}</td>
+                    <td class="text-center">{{ intervention.ville }}</td>
+                    <td class="text-center">{{ intervention.telephone }}</td>
+                    <td class="text-center">{{ intervention.mobile }}</td>
+                    <td class="text-center">{{ intervention.email }}</td>
+                    <td class="text-center">{{ intervention.representant }}</td>
+                    <td class="text-center">{{ intervention.fonction }}</td>
+                    <td class="text-center">
+                        <a href="{{ path('intervention_show', {'id': intervention.id}) }}">show</a>
+                        <a href="{{ path('intervention_edit', {'id': intervention.id}) }}">edit</a>
+                    </td>
+                    <td class="text-center">
+                        <a href='{{ path('intervention_pv', { 'id': intervention.id }) }}' >Procès Verbal</a>
+                        <a href="{{ path('intervention_bi', { 'id': intervention.id }) }}">Bon Intervention</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
     <a href="{{ path('intervention_new') }}">Create new</a>
 {% endblock %}

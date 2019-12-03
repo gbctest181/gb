@@ -1,0 +1,152 @@
+body{
+    background-image: url("/public/images/bg-img-3.jpg");
+    background-size: cover;
+    color: white;
+    margin-left: 2%;
+    font-size: 20px;
+}
+.Header{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    vertical-align: middle;
+    margin: 2%;
+
+}
+.Logo{
+    background-image: url("/public/images/logo_gd.gif");
+    width: 222px;
+    height: 222px;
+}
+.Titre{
+    margin-left: 2%;
+    font-size: 3vw;
+    padding-left: 20px;
+    padding-right: 10px;
+    border: 1px solid grey;
+}
+.Client{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid grey;
+}
+.ClientFinal{
+    margin : 2%;
+}
+.ClientIntervention{
+    margin : 2%;
+}
+
+.Signatures{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content:space-around;
+}
+
+.Signature{
+    border: 1px dashed grey;
+    margin-bottom: 3%;
+    background: rgba(34, 34, 34, 0.8);
+    box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.Date_signature{
+    margin-top: 5%;
+}
+
+.Bouton{
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 20px;
+    margin-left: 10%;
+    background: #f7a100;
+    color: #ffffff;
+}
+
+a{text-decoration: none;}
+.Footer p{
+    text-align: center;
+    font-size: 10px;
+    line-height: 80%;
+}
+/*----------------Formation----------------------*/
+.Personne, .DateLieu, .ReprFonct, .CodeVille, .Formateur{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #f1f1f1;
+}
+h3{
+    text-align: center;
+    border: 1px solid #f1f1f1;
+}
+.Formateur, .Total{
+    float: right;
+    border: none;
+    margin-bottom: 2%;
+}
+.Information {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #f1f1f1;
+    text-align: center;
+}
+/*------------Bon Intervention------------------*/
+.Materiel, .CheckboxBI, .Designation{
+    display: flex;
+    justify-content: space-around;
+}
+li{
+    list-style-type: none;
+}
+.Pieces, .CheckboxBI, .Emporter, .Information{
+    padding: 10px;
+    border: 1px solid #f1f1f1;
+}
+/*------------Bon Intervention(Observation)------------------*/
+.Technicien, .Validation{
+    display: flex;
+    justify-content: space-around;
+}
+.Technicien, .Rapport{
+    border: 1px solid #f1f1f1;
+    padding: 10px;
+}
+.SignatureClient{
+    float: left;
+}
+.SignatureTech{
+    float: right;
+}
+textarea{
+    margin: 5%;
+}
+/* [type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.4em;
+  height: 1.4em;
+  border: 1px solid #aaa;
+  background: #FFF;
+  border-radius: .2em;
+  box-shadow: inset 0 1px 3 px rgba(0,0,0, .1), 0 0 0 rgba(203, 34 ,237, .2);
+  transition: all .275s;
+}
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after{
+  content: 'X';
+  position: absolute;
+  left: .18em;
+  top: .38em;
+  font-size: 1.6em;
+  color: #CB22ED;
+  line-height: 0;
+  transition: all .2s;
+} */

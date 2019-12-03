@@ -97,4 +97,13 @@ class Materiel
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $format = "%s,%s";
+        return sprintf($format,
+            $this->quantite,
+            $this->fk_piece
+        );
+    }
 }

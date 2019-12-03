@@ -13,7 +13,7 @@ class BonInterventionType extends AbstractType
     {
         $builder
             ->add('pdf')
-            ->add('intervention')
+//            ->add('intervention')
         ;
     }
 

@@ -54,4 +54,13 @@ class BonIntervention
 
         return $this;
     }
+
+
+    public function __toString()
+    {
+        $format = "%s";
+        return sprintf($format,
+            $this->pdf
+        );
+    }
 }

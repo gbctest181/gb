@@ -376,4 +376,26 @@ class Intervention
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $format = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s";
+        return sprintf($format,
+            $this->nom,
+            $this->adresse,
+            $this->codepostal,
+            $this->ville,
+            $this->telephone,
+            $this->mobile,
+            $this->email,
+            $this->representant,
+            $this->fonction,
+            $this->fk_client,
+            $this->fk_bonintervention,
+            $this->fk_formation,
+            $this->fk_materiel,
+            $this->fk_pv,
+            $this->fk_user
+        );
+    }
 }

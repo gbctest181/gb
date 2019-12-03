@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bon intervention {% endblock %}
+{% block body %}
+    <header>
+        <div class="Header">
+            <div class="Logo"></div>
+            <div class="Titre">
+                <h1>BON INTERVENTION</h1>
+            </div>
+        </div>
+    </header>
+
+        <div class="container-fluid row table-dark">
+            <div class="row">
+                <div class="col">
+                    <div class="col">
+                            Client :  clientfinal.nom
+                    </div>
+                    <div class="col">
+                        Adresse :  clientfinal.adresse }}
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            CP :  clientfinal.codepostal }}
+                        </div>
+                        <div class="col">
+                            Ville :  clientfinal.ville }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="col">
+                        Telephone :  clientfinal.telephone }}
+                    </div>
+                    <div class="col">
+                        Mobile :  clientfinal.mobile }}
+                    </div>
+                    <div class="col">
+                            Fax :  clientfinal.fax }}
+                    </div>
+                    <div class="col">
+                            E-mail :  clientfinal.email }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="col">
+                            Client : {{ intervention.nom }}
+                    </div>
+                    <div class="col">
+                        Adresse : {{ intervention.adresse }}
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            CP : {{ intervention.codepostal }}
+                        </div>
+                        <div class="col">
+                            Ville : {{ intervention.ville }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="col">
+                            Telephone : {{ intervention.telephone }}
+                    </div>
+                    <div class="col">
+                        Mobile : {{ intervention.mobile }}
+                    </div>
+                    <div class="col">
+                            E-mail : {{ intervention.email }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container row">
+        <div class="grid_3">
+            <div class="form-row">État
+                <div class="form-group col-md-12 ">
+                    <div class="form-check">
+                        <label for="termine">Terminé</label>
+                        <input class="form-check-input" type="radio" name="etat" id="termine" value="oui" checked>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-12 ">
+                    <div class="form-check">
+                        <label for="poursuivre">A poursuivre</label>
+                        <input class="form-check-input" type="radio" name="etat" id="poursuivre" value="non">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="form-group">
+                {#             les boutons envoi une alerte pour la secretaire       #}
+                <div class="form-check">
+                    <label for="commande">A commander</label>
+                    <input class="form-check-input" type="checkbox" id="commande">
+                </div>
+                <div class="form-check">
+                    <label for="commande">A commander</label>
+                    <input class="form-check-input" type="checkbox" id="essai">
+                </div>
+                <div class="form-check">
+                    <label for="commande">A commander</label>
+                    <input class="form-check-input" type="checkbox" id="devis">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <section class="fbox-1 table-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="grid_3">
+                        <!--=======================-->
+                        <div class="fblock-1 wow fadeIn"><a href="./"><img src="/public/images/logo.jpg" alt="" ></a></div>
+                        <!--=======================-->
+                    </div>
+                    <div class="preffix_2 grid_6">
+                        <!--=======================-->
+                        <div class="fblock-2">
+                            <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
+                            <p>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO.</p>
+                            <p>Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+{% endblock %}

@@ -15,7 +15,7 @@ class PieceType extends AbstractType
             ->add('code')
             ->add('designation')
             ->add('prixht')
-            ->add('materiel')
+//            ->add('materiel')
         ;
     }
 

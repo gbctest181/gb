@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ClientFinal;
 use App\Form\ClientFinalType;
 use App\Repository\ClientFinalRepository;
+use Google_Service_Calendar;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,8 @@ class ClientFinalController extends AbstractController
 {
     /**
      * @Route("/", name="client_final_index", methods={"GET"})
+     * @param ClientFinalRepository $clientFinalRepository
+     * @return Response
      */
     public function index(ClientFinalRepository $clientFinalRepository): Response
     {
@@ -27,6 +30,8 @@ class ClientFinalController extends AbstractController
 
     /**
      * @Route("/new", name="client_final_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +55,8 @@ class ClientFinalController extends AbstractController
 
     /**
      * @Route("/{id}", name="client_final_show", methods={"GET"})
+     * @param ClientFinal $clientFinal
+     * @return Response
      */
     public function show(ClientFinal $clientFinal): Response
     {
@@ -60,6 +67,9 @@ class ClientFinalController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="client_final_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param ClientFinal $clientFinal
+     * @return Response
      */
     public function edit(Request $request, ClientFinal $clientFinal): Response
     {
@@ -80,6 +90,9 @@ class ClientFinalController extends AbstractController
 
     /**
      * @Route("/{id}", name="client_final_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param ClientFinal $clientFinal
+     * @return Response
      */
     public function delete(Request $request, ClientFinal $clientFinal): Response
     {

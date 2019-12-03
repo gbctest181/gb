@@ -13,7 +13,8 @@ class MaterielType extends AbstractType
     {
         $builder
             ->add('quantite')
-            ->add('intervention')
+            ->add('fk_piece')
+//            ->add('intervention')
         ;
     }
 

@@ -88,4 +88,14 @@ class Piece
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $format = "code %s, %s, %s €/unité";
+        return sprintf($format,
+            $this->code,
+            $this->designation,
+            $this->prixht
+        );
+    }
 }

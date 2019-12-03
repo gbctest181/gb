@@ -13,7 +13,7 @@ class FormationType extends AbstractType
     {
         $builder
             ->add('pdf')
-            ->add('intervention')
+//            ->add('intervention')
         ;
     }
 

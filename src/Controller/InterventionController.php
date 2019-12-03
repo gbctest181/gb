@@ -17,6 +17,8 @@ class InterventionController extends AbstractController
 {
     /**
      * @Route("/", name="intervention_index", methods={"GET"})
+     * @param InterventionRepository $interventionRepository
+     * @return Response
      */
     public function index(InterventionRepository $interventionRepository): Response
     {
@@ -27,6 +29,8 @@ class InterventionController extends AbstractController
 
     /**
      * @Route("/new", name="intervention_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class InterventionController extends AbstractController
 
     /**
      * @Route("/{id}", name="intervention_show", methods={"GET"})
+     * @param Intervention $intervention
+     * @return Response
      */
     public function show(Intervention $intervention): Response
     {
@@ -60,6 +66,9 @@ class InterventionController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="intervention_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Intervention $intervention
+     * @return Response
      */
     public function edit(Request $request, Intervention $intervention): Response
     {
@@ -80,6 +89,9 @@ class InterventionController extends AbstractController
 
     /**
      * @Route("/{id}", name="intervention_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Intervention $intervention
+     * @return Response
      */
     public function delete(Request $request, Intervention $intervention): Response
     {
@@ -90,5 +102,31 @@ class InterventionController extends AbstractController
         }
 
         return $this->redirectToRoute('intervention_index');
+    }
+
+    /**
+     * //Proces verbal
+     * @Route("/procesverbal/{id}", name="intervention_pv", methods={"GET"})
+     * @param Intervention $intervention
+     * @return Response
+     */
+    public function showPV(Intervention $intervention): Response
+    {
+        return $this->render('intervention/procesverbal.html.twig', [
+            'intervention' => $intervention,
+        ]);
+    }
+
+    /**
+     * //Bon d'intervention
+     * @Route("/bonintervention/{id}", name="intervention_bi", methods={"GET"})
+     * @param Intervention $intervention
+     * @return Response
+     */
+    public function showBI(Intervention $intervention): Response
+    {
+        return $this->render('intervention/bonintervention.html.twig', [
+            'intervention' => $intervention,
+        ]);
     }
 }

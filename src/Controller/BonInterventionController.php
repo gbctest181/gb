@@ -17,6 +17,8 @@ class BonInterventionController extends AbstractController
 {
     /**
      * @Route("/", name="bon_intervention_index", methods={"GET"})
+     * @param BonInterventionRepository $bonInterventionRepository
+     * @return Response
      */
     public function index(BonInterventionRepository $bonInterventionRepository): Response
     {
@@ -27,6 +29,8 @@ class BonInterventionController extends AbstractController
 
     /**
      * @Route("/new", name="bon_intervention_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class BonInterventionController extends AbstractController
 
     /**
      * @Route("/{id}", name="bon_intervention_show", methods={"GET"})
+     * @param BonIntervention $bonIntervention
+     * @return Response
      */
     public function show(BonIntervention $bonIntervention): Response
     {
@@ -60,6 +66,9 @@ class BonInterventionController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="bon_intervention_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param BonIntervention $bonIntervention
+     * @return Response
      */
     public function edit(Request $request, BonIntervention $bonIntervention): Response
     {
@@ -80,6 +89,9 @@ class BonInterventionController extends AbstractController
 
     /**
      * @Route("/{id}", name="bon_intervention_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param BonIntervention $bonIntervention
+     * @return Response
      */
     public function delete(Request $request, BonIntervention $bonIntervention): Response
     {
