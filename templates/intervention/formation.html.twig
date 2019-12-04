@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+{% block body %}
+    {#_________Header___________#}
+<header class="jumbotron-fluid table-dark text-center">
+    <div class="Logo"></div>
+    <div class="title">
+        <h1>FORMATION</h1>
+    </div>
+</header>
+    {#__________Infos___________#}
+    <div class="container">
+        <div class="container" style="border: 1px solid #0a0a0a">
+            <div class="row" >
+                <div class="col">
+                DATE: {{ "now"|date("d/m/Y") }}
+                </div>
+                <div class="col">
+                    LIEU :
+                </div>
+            </div>
+        </div>
+        <div class="container" style="border: 1px solid #0a0a0a">
+            CLIENT : {{ intervention.nom }}
+        </div>
+        <div class="container" style="border: 1px solid #0a0a0a">
+            <div class="row">
+                <div class="col">
+                    REPRESENTANT : {{ intervention.representant }}
+                </div>
+                <div class="col">
+                    FONCTION : {{ intervention.fonction }}
+                </div>
+            </div>
+        </div>
+        <div class="container" style="border: 1px solid #0a0a0a">
+            <adress>
+                ADRESSE :
+                <div class="col">{{ intervention.adresse }}</div>
+                <div class="col">{{ intervention.codepostal }} {{ intervention.ville }}</div>
+            </adress>
+        </div>
+
+    </div>
+    <br>
+    {#____Presonnes présentes___#}
+    <div class="container" >
+        <div class="container" style="border: 1px solid #0a0a0a">
+            <h4>PERSONNES PRESENTES</h4>
+        </div>
+        <div class="container" style="border: 1px solid #0a0a0a">
+            <div class="row text-center">
+                <div class="col">
+                    <h5 >NOM</h5>
+                    <div >
+                        <label class="nom1" >
+                            <input type="text" name="nom1" placeholder="Nom :" value="" data-constraints="@Required @JustLetters">
+                        </label>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <h5>Prénom</h5>
+                    <div>
+                        <label class="prenom">
+                            <input type="text" name="prenom" placeholder="Prénom :" value="" data-constraints="@Required @JustLetters">
+                        </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h5>Fonction</h5>
+                    <div>
+                        <label class="fonction">
+                            <input type="text" name="fonction" placeholder="Fonction :" value="" data-constraints="@Required @JustLetters">
+                        </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sigPad" id="smoothed" style="width:404px;">
+                        <h5>Signature</h5>
+                        <div class="row">
+
+                            <div id="signature"></div>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#signature").jSignature();
+                                })
+                            </script>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="retour">
+        <button type="button" class="btn btn-danger"><a href="javascript:history.go(-1)">Retour</a></button>
+    </div>
+    {#_________Footer___________#}
+    <footer class="container-fluid table-dark text-center" style="margin-bottom:0" id="footer">
+        <div class="row">
+            <div class="grid_3">
+                <div class="fblock-1 wow fadeIn"><a href="./"><img src="{{ asset("/public/images/logo.jpg") }}" alt="" ></a></div>
+            </div>
+            <div class="preffix_2 grid_6">
+                <div class="fblock-2">
+                    <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
+                    <adress>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO. <br>
+                    Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</adress>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+{% endblock %}

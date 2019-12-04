@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0dc21c69998a997819d14ac6cdb70c7",
+    "content-hash": "fc318f9d6368d2d1e3aead9b9926362e",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -3032,7 +3032,7 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v5.0.0",
+            "version": "v5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",

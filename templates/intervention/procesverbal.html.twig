@@ -3,16 +3,14 @@
 {% block title %}PROCES VERBAl{% endblock %}
 
 {% block body %}
-    <header>
-        <div class="Header">
-            <div class="Logo"></div>
-            <div class="Titre">
-                <h1>PROCES VERBAL</h1>
-            </div>
+    <header class="container-fluid text-center">
+        <div class="Logo"></div>
+        <div class="title">
+            <h1>PROCES VERBAL</h1>
         </div>
     </header>
 
-    <article class="super-box bg bg-img-6" data-stellar-background-ratio="-0.2">
+    <article class="container" >
         <form class="table-dark">
             <div class="row">
                 <div class="col-1"></div>
@@ -93,7 +91,7 @@
                                 {#             le bouton apparait si le check est activé                #}
                              <div class="form-check">
                                  <input class="form-check-input" type="checkbox" id="reserve">
-                                 <label class="form-check-label" for="gridCheck">
+                                 <label class="form-check-label" for="reserve">
                                 Réserve (voir observation)
                                  </label>
                              </div>
@@ -115,7 +113,7 @@
 
         </div>
 </div>
-    <div class="container-fluid table-dark">
+    <div class="container table-dark">
         <div class="row">
             <div class="col"></div>
             <div class="col-3">
@@ -147,73 +145,18 @@
     </div>
 
 
-<footer id="footer">
-    <section class="fbox-1 table-dark">
-      <div class="container">
-        <div class="row">
-          <div class="grid_3">
-          <!--=======================-->
+<footer class="container-fluid table-dark" id="footer">
+    <div class="row">
+        <div class="grid_3">
             <div class="fblock-1 wow fadeIn"><a href="./"><img src="/public/images/logo.jpg" alt="" ></a></div>
-          <!--=======================-->
-          </div>
-          <div class="preffix_2 grid_6">
-            <!--=======================-->
+        </div>
+        <div class="preffix_2 grid_6">
             <div class="fblock-2">
-              <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
+                <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
                 <p>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO.</p>
                 <p>Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</p>
             </div>
-
-          </div>
         </div>
-      </div>
-    </section>
-  </footer>
-
-
-{#<table class="table">#}
-{#    <tbody>#}
-{#    <tr>#}
-{#        <th>Id</th>#}
-{#        <td>{{ intervention.id }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Nom</th>#}
-{#        <td>{{ intervention.nom }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Adresse</th>#}
-{#        <td>{{ intervention.adresse }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Codepostal</th>#}
-{#        <td>{{ intervention.codepostal }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Ville</th>#}
-{#        <td>{{ intervention.ville }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Telephone</th>#}
-{#        <td>{{ intervention.telephone }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Mobile</th>#}
-{#        <td>{{ intervention.mobile }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Email</th>#}
-{#        <td>{{ intervention.email }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Representant</th>#}
-{#        <td>{{ intervention.representant }}</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <th>Fonction</th>#}
-{#        <td>{{ intervention.fonction }}</td>#}
-{#    </tr>#}
-{#    </tbody>#}
-{#</table>#}
-
+    </div>
+</footer>
 {% endblock %}

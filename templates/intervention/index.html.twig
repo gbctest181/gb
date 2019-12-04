@@ -39,8 +39,9 @@
                         <a href="{{ path('intervention_edit', {'id': intervention.id}) }}">edit</a>
                     </td>
                     <td class="text-center">
-                        <a href='{{ path('intervention_pv', { 'id': intervention.id }) }}' >Procès Verbal</a>
-                        <a href="{{ path('intervention_bi', { 'id': intervention.id }) }}">Bon Intervention</a>
+                        <button type="button" class="btn btn-info"><a href='{{ path('intervention_pv', { 'id': intervention.id }) }}' >Procès Verbal</a></button>
+                        <button type="button" class="btn btn-warning"><a href="{{ path('intervention_bi', { 'id': intervention.id }) }}">Bon Intervention</a></button>
+                        <button type="button" class="btn btn-secondary"><a href="{{ path('intervention_for', { 'id': intervention.id }) }}">Formation</a></button>
                     </td>
                 </tr>
             {% else %}

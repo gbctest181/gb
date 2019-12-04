@@ -129,4 +129,17 @@ class InterventionController extends AbstractController
             'intervention' => $intervention,
         ]);
     }
+
+    /**
+     * //Formation
+     * @Route("/formation/{id}", name="intervention_for", methods={"GET"})
+     * @param Intervention $intervention
+     * @return Response
+     */
+    public function showForma(Intervention $intervention): Response
+    {
+        return $this->render('intervention/formation.html.twig', [
+            'intervention' => $intervention,
+        ]);
+    }
 }
