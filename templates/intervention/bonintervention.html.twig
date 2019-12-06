@@ -124,24 +124,43 @@
                 <tr>
                     <th scope="row">DIAC</th>
                     <td>Divers Accessoires de Pose</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <input type="button" id="moinsDiac" value="-" />
+                        <input type="text" name="qteDiac" id="qtDiac" placeholder="qté :" value="0" data-constraints="@Required @JustNumber">
+                        <input type="button" id="plusDiac" value="+" />
+                    </td>
+                    <td>
+                        <input type="text" name="pxDiac" id="pxDiac" placeholder="prix :" value="" data-constraints="@Required @JustNumber">
+                    </td>
+                    <td id="ttDiac"></td>
                 </tr>
                 <tr>
                     <th scope="row">MO...</th>
                     <td>Main d'oeuvre</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <input type="button" id="moinsMo" value="-" />
+                        <input type="text" name="pxMo" id="qtMo" placeholder="qté :" value="0" data-constraints="@Required @JustNumber">
+                        <input type="button" id="plusMo" value="+" />
+                    </td>
+                    <td>
+                        <input type="text" name="pxMo" id="pxMo" placeholder="prix :" value="" data-constraints="@Required @JustNumber">
+                    </td>
+                    <td id="ttMo"></td>
                 </tr>
                 <tr>
                     <th scope="row">DEP...</th>
                     <td>Déplacement</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <input type="button" id="moinsDep" value="-" />
+                        <input type="text" name="qteDep" id="qtDep" placeholder="qté :" value="0" data-constraints="@Required @JustNumber">
+                        <input type="button" id="plusDep" value="+" />
+                    </td>
+                    <td>
+                        <input type="text" name="pxDep" id="pxDep" placeholder="prix :" value="" data-constraints="@Required @JustNumber">
+                    </td>
+                    <td id="ttDep"></td>
                 </tr>
+
                 <tr>
                     <th></th>
                     <td></td>
@@ -188,9 +207,20 @@
                             <div class="col-3">
                                 <h4>Technicien</h4>
                                 Nom : {#{{ user.username }}#}
-                                <div class="Signature">
-                                    <canvas id="signT" width="165" height="48" >Signature</canvas>
-                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <canvas id="sig-canvas" width="250" height="100" style=" border: 2px dotted #CCCCCC; border-radius: 15px; cursor: crosshair; ">
+                                            </canvas>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary" id="sig-submitBtn">Ok</button>
+                                            <button class="btn btn-default" id="sig-clearBtn">Effacer</button>
+                                        </div>
+                                    </div>
+                                </div><!--SIGNATURE Technicien -->
                                 {#            cachet sur le pdf                    #}
                             </div>
                             <div class="col"></div>
@@ -204,9 +234,20 @@
                             <div class="col-3">
                                 <h4>LE CLIENT</h4>
                                 Nom : {{ intervention.nom }}
-                                <div class="Signature">
-                                    <canvas id="signC" width="165" height="48" >Signature</canvas>
-                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <canvas id="sig-canvas" width="250" height="100" style=" border: 2px dotted #CCCCCC; border-radius: 15px; cursor: crosshair; ">
+                                            </canvas>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary" id="sig-submitBtn">Ok</button>
+                                            <button class="btn btn-default" id="sig-clearBtn">Effacer</button>
+                                        </div>
+                                    </div>
+                                </div><!--SIGNATURE Client -->
                             </div>
                         </div>
                     </div>
@@ -222,7 +263,7 @@
     <footer class="container-fluid table-dark" id="footer">
         <div class="row">
             <div class="grid_3">
-                <div class="fblock-1 wow fadeIn"><a href="./"><img src="/public/images/logo.jpg" alt="" ></a></div>
+                <div class="fblock-1 wow fadeIn"><a href="./"><img src="{{ asset('/public/images/logo.jpg') }}" alt="" ></a></div>
             </div>
             <div class="preffix_2 grid_6">
                 <div class="fblock-2">
@@ -233,5 +274,193 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (function() {
+            window.requestAnimFrame = (function(callback) {
+                return window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    window.msRequestAnimaitonFrame ||
+                    function(callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+            })();
+
+            const canvas = document.getElementById("sig-canvas");
+            const ctx = canvas.getContext("2d");
+            ctx.strokeStyle = "#222222";
+            ctx.lineWidth = 1;
+
+            let drawing = false;
+            let mousePos = {
+                x: 0,
+                y: 0
+            };
+            let lastPos = mousePos;
+
+            canvas.addEventListener("mousedown", function(e) {
+                drawing = true;
+                lastPos = getMousePos(canvas, e);
+            }, false);
+
+            canvas.addEventListener("mouseup", function(e) {
+                drawing = false;
+            }, false);
+
+            canvas.addEventListener("mousemove", function(e) {
+                mousePos = getMousePos(canvas, e);
+            }, false);
+
+            // Ajouter un support d'événement tactile pour mobile
+            canvas.addEventListener("touchstart", function(e) {
+            }, false);
+
+            canvas.addEventListener("touchmove", function(e) {
+                const touch = e.touches[0];
+                const me = new MouseEvent("mousemove", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(me);
+            }, false);
+
+            canvas.addEventListener("touchstart", function(e) {
+                mousePos = getTouchPos(canvas, e);
+                const touch = e.touches[0];
+                const me = new MouseEvent("mousedown", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(me);
+            }, false);
+
+            canvas.addEventListener("touchend", function(e) {
+                const me = new MouseEvent("mouseup", {});
+                canvas.dispatchEvent(me);
+            }, false);
+
+            function getMousePos(canvasDom, mouseEvent) {
+                const rect = canvasDom.getBoundingClientRect();
+                return {
+                    x: mouseEvent.clientX - rect.left,
+                    y: mouseEvent.clientY - rect.top
+                }
+            }
+
+            function getTouchPos(canvasDom, touchEvent) {
+                const rect = canvasDom.getBoundingClientRect();
+                return {
+                    x: touchEvent.touches[0].clientX - rect.left,
+                    y: touchEvent.touches[0].clientY - rect.top
+                }
+            }
+
+            function renderCanvas() {
+                if (drawing) {
+                    ctx.moveTo(lastPos.x, lastPos.y);
+                    ctx.lineTo(mousePos.x, mousePos.y);
+                    ctx.stroke();
+                    lastPos = mousePos;
+                }
+            }
+
+            // Empêcher le défilement lorsque vous touchez la zone de signature
+            document.body.addEventListener("touchstart", function(e) {
+                if (e.target === canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchend", function(e) {
+                if (e.target === canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchmove", function(e) {
+                if (e.target === canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+
+            (function drawLoop() {
+                requestAnimFrame(drawLoop);
+                renderCanvas();
+            })();
+
+            function clearCanvas() {
+                canvas.width = canvas.width;
+            }
+
+            // Configurer l'interface utilisateur
+            const sigText = document.getElementById("sig-dataUrl");
+            const sigImage = document.getElementById("sig-image");
+            const clearBtn = document.getElementById("sig-clearBtn");
+            const submitBtn = document.getElementById("sig-submitBtn");
+            clearBtn.addEventListener("click", function(e) {
+                clearCanvas();
+                sigText.innerHTML = "Data URL for your signature will go here!";
+                sigImage.setAttribute("src", "");
+            }, false);
+            submitBtn.addEventListener("click", function(e) {
+                const dataUrl = canvas.toDataURL();
+                //  sigText.innerHTML = dataUrl;           lien image pour la signature
+                //  sigImage.setAttribute("src", dataUrl);
+            }, false);
+        })();
+    </script><!--SIGNATURE -->
+    <script>
+        let qtDiac = $('#qtDiac').val();
+        let qtMo = $('#qtMo').val();
+        let qtDep = $('#qtDep').val();
+        var pxDiac = $('#pxDiac');
+        var pxMo = $('#pxMo');
+        var pxDep = $('#pxDep');
+
+        $("#moinsDep").click(function () {
+            if (qtDep <= 0){
+                qtDep = 0
+            }else {
+                qtDep--;
+                $('#qtDep').val(qtDep);
+            }
+        });
+
+        $("#plusDep").click(function () {
+            qtDep++;
+            $('#qtDep').val(qtDep);
+        });
+
+        $("#moinsDiac").click(function () {
+            if (qtDiac <= 0){
+                qtDiac = 0
+            }else {
+                qtDiac--;
+                $('#qtDiac').val(qtDiac);
+            }
+        });
+
+        $("#plusDiac").click(function () {
+            qtDiac++;
+            $('#qtDiac').val(qtDiac);
+        });
+
+        $("#moinsMo").click(function () {
+            if (qtMo <= 0){
+                qtMo = 0
+            }else {
+                qtMo--;
+                $('#qtMo').val(qtMo);
+            }
+        });
+
+        $("#plusMo").click(function () {
+            qtMo++;
+            $('#qtMo').val(qtMo);
+        });
+        // $ttDiac = $qtDiac * $pxDiac;
+        // $ttMo= $qtMo * $pxMo;
+        // $ttDep= $qtDep * $pxDep;
+    </script><!-- quantités boutons-->
 
 {% endblock %}

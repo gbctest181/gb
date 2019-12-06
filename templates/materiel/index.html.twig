@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Quantite</th>
+                <th>Fk_piece</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ materiel.id }}</td>
                 <td>{{ materiel.quantite }}</td>
+                <td></td>
 
                 <td>
                     <a href="{{ path('materiel_show', {'id': materiel.id}) }}">show</a>

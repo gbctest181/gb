@@ -77,7 +77,7 @@ class Materiel
     {
         if ($this->fk_piece->contains($fkPiece)) {
             $this->fk_piece->removeElement($fkPiece);
-            // set the owning side to null (unless already changed)
+            // mettre le côté propriétaire à null (sauf si déjà changé)
             if ($fkPiece->getMateriel() === $this) {
                 $fkPiece->setMateriel(null);
             }

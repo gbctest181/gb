@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Piece;
 use App\Entity\Materiel;
 use App\Form\MaterielType;
 use App\Repository\MaterielRepository;
+use App\Repository\PieceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,13 +18,17 @@ class MaterielController extends AbstractController
 {
     /**
      * @Route("/", name="materiel_index", methods={"GET"})
+     * @param PieceRepository $pieceRepository
      * @param MaterielRepository $materielRepository
      * @return Response
      */
-    public function index(MaterielRepository $materielRepository): Response
+    public function index(PieceRepository $pieceRepository, MaterielRepository $materielRepository): Response
     {
+
+
         return $this->render('materiel/index.html.twig', [
             'materiels' => $materielRepository->findAll(),
+            'pieces' => $pieceRepository->findAll(),
         ]);
     }
 

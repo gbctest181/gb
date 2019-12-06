@@ -50,48 +50,66 @@
             <h4>PERSONNES PRESENTES</h4>
         </div>
         <div class="container" style="border: 1px solid #0a0a0a">
-            <div class="row text-center">
-                <div class="col">
-                    <h5 >NOM</h5>
-                    <div >
+            <div>
+                <ul class="row">
+                    <li class="col"><h5>NOM</h5></li>
+                    <li class="col"><h5>Prénom</h5></li>
+                    <li class="col"><h5>Fonction</h5></li>
+                    <li class="col"><h5>E-Signature</h5></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="row">
+                    <li class="col">
                         <label class="nom1" >
                             <input type="text" name="nom1" placeholder="Nom :" value="" data-constraints="@Required @JustLetters">
                         </label>
-                    </div>
-
-                </div>
-                <div class="col">
-                    <h5>Prénom</h5>
-                    <div>
+                    </li><!--NOM-->
+                    <li class="col">
                         <label class="prenom">
-                            <input type="text" name="prenom" placeholder="Prénom :" value="" data-constraints="@Required @JustLetters">
+                            <input type="text" name="prenom1" placeholder="Prénom :" value="" data-constraints="@Required @JustLetters">
                         </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h5>Fonction</h5>
-                    <div>
+                    </li><!--PRENOM-->
+                    <li class="col">
                         <label class="fonction">
-                            <input type="text" name="fonction" placeholder="Fonction :" value="" data-constraints="@Required @JustLetters">
+                            <input type="text" name="fonction1" placeholder="Fonction :" value="" data-constraints="@Required @JustLetters">
                         </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="sigPad" id="smoothed" style="width:404px;">
-                        <h5>Signature</h5>
-                        <div class="row">
-
-                            <div id="signature"></div>
-                            <script>
-                                $(document).ready(function() {
-                                    $("#signature").jSignature();
-                                })
-                            </script>
-                                </ul>
+                    </li><!--FONCTION-->
+                    <li class="col">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <canvas id="sig-canvas" width="165" height="48" style=" border: 2px dotted #CCCCCC; border-radius: 15px; cursor: crosshair; ">
+                                    </canvas>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" id="sig-submitBtn">Ok</button>
+                                    <button class="btn btn-default" id="sig-clearBtn">Effacer</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+{#                            <br/>#}
+{#                            <div class="row">#}
+{#                                <div class="col-md-12">#}
+{#                                    <textarea id="sig-dataUrl" class="form-control" rows="5">L'URL de données pour votre signature ira ici!</textarea>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <br/>#}
+{#                            <div class="row">#}
+{#                                <div class="col-md-12">#}
+{#                                    <img id="sig-image" src="" alt="Your signature will go here!"/>#}
+{#                                </div>#}
+{#                            </div>
+                        </div>#}
+
+
+
+
+{#                        #}
+                    </li><!--SIGNATURE -->
+                </ul>
             </div>
         </div>
     </div>
@@ -113,6 +131,139 @@
             </div>
         </div>
     </footer>
+    <script>
+        (function() {
+            window.requestAnimFrame = (function(callback) {
+                return window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    window.msRequestAnimaitonFrame ||
+                    function(callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+            })();
 
+            const canvas = document.getElementById("sig-canvas");
+            const ctx = canvas.getContext("2d");
+            ctx.strokeStyle = "#222222";
+            ctx.lineWidth = 1;
+
+            let drawing = false;
+            let mousePos = {
+                x: 0,
+                y: 0
+            };
+            let lastPos = mousePos;
+
+            canvas.addEventListener("mousedown", function(e) {
+                drawing = true;
+                lastPos = getMousePos(canvas, e);
+            }, false);
+
+            canvas.addEventListener("mouseup", function(e) {
+                drawing = false;
+            }, false);
+
+            canvas.addEventListener("mousemove", function(e) {
+                mousePos = getMousePos(canvas, e);
+            }, false);
+
+            // Ajouter un support d'événement tactile pour mobile
+            canvas.addEventListener("touchstart", function(e) {
+            }, false);
+
+            canvas.addEventListener("touchmove", function(e) {
+                const touch = e.touches[0];
+                const me = new MouseEvent("mousemove", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(me);
+            }, false);
+
+            canvas.addEventListener("touchstart", function(e) {
+                mousePos = getTouchPos(canvas, e);
+                const touch = e.touches[0];
+                const me = new MouseEvent("mousedown", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(me);
+            }, false);
+
+            canvas.addEventListener("touchend", function(e) {
+                const me = new MouseEvent("mouseup", {});
+                canvas.dispatchEvent(me);
+            }, false);
+
+            function getMousePos(canvasDom, mouseEvent) {
+                const rect = canvasDom.getBoundingClientRect();
+                return {
+                    x: mouseEvent.clientX - rect.left,
+                    y: mouseEvent.clientY - rect.top
+                }
+            }
+
+            function getTouchPos(canvasDom, touchEvent) {
+                const rect = canvasDom.getBoundingClientRect();
+                return {
+                    x: touchEvent.touches[0].clientX - rect.left,
+                    y: touchEvent.touches[0].clientY - rect.top
+                }
+            }
+
+            function renderCanvas() {
+                if (drawing) {
+                    ctx.moveTo(lastPos.x, lastPos.y);
+                    ctx.lineTo(mousePos.x, mousePos.y);
+                    ctx.stroke();
+                    lastPos = mousePos;
+                }
+            }
+
+            // Empêcher le défilement lorsque vous touchez la zone de signature
+            document.body.addEventListener("touchstart", function(e) {
+                if (e.target === canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchend", function(e) {
+                if (e.target === canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchmove", function(e) {
+                if (e.target === canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+
+            (function drawLoop() {
+                requestAnimFrame(drawLoop);
+                renderCanvas();
+            })();
+
+            function clearCanvas() {
+                canvas.width = canvas.width;
+            }
+
+            // Configurer l'interface utilisateur
+            const sigText = document.getElementById("sig-dataUrl");
+            const sigImage = document.getElementById("sig-image");
+            const clearBtn = document.getElementById("sig-clearBtn");
+            const submitBtn = document.getElementById("sig-submitBtn");
+            clearBtn.addEventListener("click", function(e) {
+                clearCanvas();
+                sigText.innerHTML = "Data URL for your signature will go here!";
+                sigImage.setAttribute("src", "");
+            }, false);
+            submitBtn.addEventListener("click", function(e) {
+                const dataUrl = canvas.toDataURL();
+                //  sigText.innerHTML = dataUrl;           lien image pour la signature
+                //  sigImage.setAttribute("src", dataUrl);
+            }, false);
+        })();
+    </script><!--SIGNATURE -->
 
 {% endblock %}
