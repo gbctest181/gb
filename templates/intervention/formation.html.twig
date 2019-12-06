@@ -58,59 +58,48 @@
                     <li class="col"><h5>E-Signature</h5></li>
                 </ul>
             </div>
-            <div>
-                <ul class="row">
+            <div class="inscription">
+                <ul class="row" style="border: 1px dashed #7DA0B1">
                     <li class="col">
-                        <label class="nom1" >
-                            <input type="text" name="nom1" placeholder="Nom :" value="" data-constraints="@Required @JustLetters">
-                        </label>
+                        <input type="text" name="nom1" placeholder="Nom :" value="" data-constraints="@Required @JustLetters">
                     </li><!--NOM-->
                     <li class="col">
-                        <label class="prenom">
-                            <input type="text" name="prenom1" placeholder="Prénom :" value="" data-constraints="@Required @JustLetters">
-                        </label>
+                        <input type="text" name="prenom1" placeholder="Prénom :" value="" data-constraints="@Required @JustLetters">
                     </li><!--PRENOM-->
                     <li class="col">
-                        <label class="fonction">
-                            <input type="text" name="fonction1" placeholder="Fonction :" value="" data-constraints="@Required @JustLetters">
-                        </label>
+                        <input type="text" name="fonction1" placeholder="Fonction :" value="" data-constraints="@Required @JustLetters">
                     </li><!--FONCTION-->
                     <li class="col">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <canvas id="sig-canvas" width="165" height="48" style=" border: 2px dotted #CCCCCC; border-radius: 15px; cursor: crosshair; ">
+                                    <canvas id="sig-canvas" width="250" height="100" style=" border: 2px dotted #CCCCCC; border-radius: 15px; cursor: crosshair; ">
                                     </canvas>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary" id="sig-submitBtn">Ok</button>
-                                    <button class="btn btn-default" id="sig-clearBtn">Effacer</button>
-                                </div>
-                            </div>
                         </div>
-{#                            <br/>#}
-{#                            <div class="row">#}
-{#                                <div class="col-md-12">#}
-{#                                    <textarea id="sig-dataUrl" class="form-control" rows="5">L'URL de données pour votre signature ira ici!</textarea>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <br/>#}
-{#                            <div class="row">#}
-{#                                <div class="col-md-12">#}
-{#                                    <img id="sig-image" src="" alt="Your signature will go here!"/>#}
-{#                                </div>#}
-{#                            </div>
-                        </div>#}
-
-
-
-
-{#                        #}
+                        {#                            <br/>#}
+                        {#                            <div class="row">#}
+                        {#                                <div class="col-md-12">#}
+                        {#                                    <textarea id="sig-dataUrl" class="form-control" rows="5">L'URL de données pour votre signature ira ici!</textarea>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        {#                            <br/>#}
+                        {#                            <div class="row">#}
+                        {#                                <div class="col-md-12">#}
+                        {#                                    <img id="sig-image" src="" alt="Your signature will go here!"/>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        {#                     </div>#}
+                        {#                        #}
                     </li><!--SIGNATURE -->
+                    <li>
+                        <button class="btn btn-outline-danger" id="sig-clearBtn">Effacer</button>
+                    </li>
                 </ul>
+                <button class="btn btn-primary" id="newPers">+</button><!-- Validation et ajout de personne -->
             </div>
+
         </div>
     </div>
     <div class="retour">
@@ -265,5 +254,13 @@
             }, false);
         })();
     </script><!--SIGNATURE -->
+    <script>
+        $(document).ready(function($){
+            $('#newPers').click(function(e){
+                const second = $('.inscription').last().clone({withDataAndEvents:true}).insertAfter(this);
+                $("#newPers").remove();
 
+            });
+        });
+    </script>
 {% endblock %}
