@@ -17,7 +17,7 @@
                 DATE: {{ "now"|date("d/m/Y") }}
                 </div>
                 <div class="col">
-                    LIEU :
+                   LIEU : {#récupéré sur l'API#}
                 </div>
             </div>
         </div>
@@ -45,13 +45,13 @@
     </div>
     <br>
     {#____Presonnes présentes___#}
-    <div class="container" >
+    <div class="container"  >
         <div class="container" style="border: 1px solid #0a0a0a">
             <h4>PERSONNES PRESENTES</h4>
         </div>
         <div class="container" style="border: 1px solid #0a0a0a">
             <div>
-                <ul class="row">
+                <ul class="row" style="list-style-type:none">
                     <li class="col"><h5>NOM</h5></li>
                     <li class="col"><h5>Prénom</h5></li>
                     <li class="col"><h5>Fonction</h5></li>
@@ -59,7 +59,7 @@
                 </ul>
             </div>
             <div class="inscription">
-                <ul class="row" style="border: 1px dashed #7DA0B1">
+                <ul class="row" style="border: 1px dashed #7DA0B1; list-style-type:none">
                     <li class="col">
                         <input type="text" name="nom1" placeholder="Nom :" value="" data-constraints="@Required @JustLetters">
                     </li><!--NOM-->
@@ -95,7 +95,7 @@
                     </li><!--SIGNATURE -->
                     <li>
                         <button class="btn btn-outline-danger" id="sig-clearBtn">Effacer</button>
-                    </li>
+                    </li><!-- Bouton effacer signature-->
                 </ul>
                 <button class="btn btn-primary" id="newPers">+</button><!-- Validation et ajout de personne -->
             </div>
@@ -106,16 +106,19 @@
         <button type="button" class="btn btn-danger"><a href="javascript:history.go(-1)">Retour</a></button>
     </div>
     {#_________Footer___________#}
-    <footer class="container-fluid table-dark text-center" style="margin-bottom:0" id="footer">
+    <footer class="jumbotron-fluid table-dark" id="footer">
         <div class="row">
-            <div class="grid_3">
-                <div class="fblock-1 wow fadeIn"><a href="./"><img src="{{ asset("/public/images/logo.jpg") }}" alt="" ></a></div>
+            <div class="col-3">
+                <div class="fblock-1"><a href="./"><img src="{{ asset('/public/images/logo.jpg') }}" alt="" ></a></div>
             </div>
-            <div class="preffix_2 grid_6">
+            <div class="preffix_2 col-6">
                 <div class="fblock-2">
-                    <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
-                    <adress>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO. <br>
-                    Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</adress>
+                    <div class="fblock-2_s1">
+                        <span class="fblock-2_s1_s1">GB CONCEPT</span>
+                        &copy; <span id="copyright-year"></span>
+                        | Mentions Légales</div>
+                    <p>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO.</p>
+                    <p>Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</p>
                 </div>
             </div>
         </div>
@@ -257,10 +260,10 @@
     <script>
         $(document).ready(function($){
             $('#newPers').click(function(e){
-                const second = $('.inscription').last().clone({withDataAndEvents:true}).insertAfter(this);
+               $('.inscription').last().clone({withDataAndEvents:true}).insertAfter(this);
                 $("#newPers").remove();
 
             });
         });
-    </script>
+    </script><!-- duplique une ligne d'inscription -->
 {% endblock %}

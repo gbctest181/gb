@@ -3,68 +3,78 @@
 {% block title %}Bon intervention {% endblock %}
 {% block body %}
     {#_________Header___________#}
-    <header class="container-fluid text-center">
+    <header class="jumbotron-fluid table-dark text-center">
         <div class="Logo"></div>
         <div class="title">
             <h1>BON INTERVENTION</h1>
         </div>
     </header>
-                {#_________Info___________#}
-    <div class="container row table-dark">
-        <div class="row">
-            <div class="col">
+    {#_________Info___________#}
+    <div class="container">
+        <div class="row" style="border: 1px solid #0a0a0a">
+            <div class="row"><!-- Client Final-->
                 <div class="col">
-                        Client :  clientfinal.nom
+                    <br>
+                    <div class="col">
+                        <U>Client</U> : <b>{{intervention.fkclient.raisonSociale}}</b>
+                        <br>({{ intervention.fkclient.responsable }})
+                    </div>
+                    <div class="col">
+                        <U>Adresse :</U><br>
+                        {{ intervention.fkclient.adresse }}
+                    </div>
+                    <div class="col">
+                        {{ intervention.fkclient.codepostal }} {{ intervention.fkclient.ville }}
+                    </div>
                 </div>
                 <div class="col">
-                    Adresse :  clientfinal.adresse }}
+                    <br>
+                    <div class="col">
+                        <U>Telephone :</U> {{ intervention.fkclient.telephone }}
+                    </div>
+                    <div class="col">
+                        <U>Mobile :</U>  {{ intervention.fkclient.mobile }}
+                    </div>
+                    <div class="col">
+                        <U>Fax : </U>  {{ intervention.fkclient.fax }}
+                    </div>
+                    <div class="col">
+                        <U>E-mail :</U>  {{ intervention.fkclient.email }}
+                    </div>
+                    <br>
+                </div>
+            </div><!-- Client Final-->
+            <div class="row" style="border-left: 1px solid #0a0a0a"><!-- Client Intervention-->
+                <div class="col">
+                    <br>
+                    <div class="col">
+                            Client : {{ intervention.nom }}
+                    </div>
+                    <div class="col">
+                        Adresse : {{ intervention.adresse }}
+                    </div>
+                    <div class="col">
+                        {{ intervention.codepostal }} {{ intervention.ville }}
+                    </div>
                 </div>
                 <div class="col">
-                      CP. clientfinal.ville }}
+                    <br>
+                    <div class="col">
+                        Telephone : {{ intervention.telephone }}
+                    </div>
+                    <div class="col">
+                        Mobile : {{ intervention.mobile }}
+                    </div>
+                    <div class="col">
+                        E-mail : {{ intervention.email }}
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="col">
-                    Telephone :  clientfinal.telephone }}
-                </div>
-                <div class="col">
-                    Mobile :  clientfinal.mobile }}
-                </div>
-                <div class="col">
-                        Fax :  clientfinal.fax }}
-                </div>
-                <div class="col">
-                        E-mail :  clientfinal.email }}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="col">
-                        Client : {{ intervention.nom }}
-                </div>
-                <div class="col">
-                    Adresse : {{ intervention.adresse }}
-                </div>
-                <div class="col">
-                    {{ intervention.codepostal }} {{ intervention.ville }}
-                </div>
-            </div>
-            <div class="col">
-                <div class="col">
-                    Telephone : {{ intervention.telephone }}
-                </div>
-                <div class="col">
-                    Mobile : {{ intervention.mobile }}
-                </div>
-                <div class="col">
-                    E-mail : {{ intervention.email }}
-                </div>
-            </div>
+            </div><!-- Client Intervention-->
         </div>
     </div>
     {#_________Etat___________#}
-    <div class="container-fluid ">
+    <div class="container" style="border: 1px solid #0a0a0a">
+        <br>
         <div class="container">
             <div class="form-row">
                 <h6>État</h6>
@@ -80,7 +90,7 @@
         </div>
         <div class="container">
             <div class="form-group row">
-                {#             les boutons envoient une alerte pour la secretaire       #}
+                {#             les boutons doivent envoyer une alerte pour la secretaire       #}
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="commande">
                     <label for="commande">A commander    </label>
@@ -93,7 +103,6 @@
                     <input class="form-check-input" type="checkbox" id="devis">
                     <label for="devis">Devis à faire    </label>
                 </div>
-
             </div>
         </div>
     </div>
@@ -192,11 +201,11 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="form-check ">{#Fait apparaitre le textarea "observation client#}
+                        <div class="form-check ">
                             <label for="observation"> Observations client  </label>
                             <input class="form-check-label" type="checkbox" name="observation" id="observation"  >
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-6" id="obsClient" style="display: none" >
                             <label for="obs"></label>
                             <textarea class="form-control" rows="3"  id="obs" placeholder="Observations client :"></textarea>
                         </div>
@@ -229,7 +238,6 @@
                                 <br>
                                 <button type="submit" class="btn btn-success ">Envoyer</button>
                             </div>
-
                             <div class="col"></div>
                             <div class="col-3">
                                 <h4>LE CLIENT</h4>
@@ -251,7 +259,6 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -260,14 +267,17 @@
         <button type="button" class="btn btn-danger"><a href="javascript:history.go(-1)">Retour</a></button>
     </div>
     {#_________Footer___________#}
-    <footer class="container-fluid table-dark" id="footer">
+    <footer class="jumbotron-fluid table-dark" id="footer">
         <div class="row">
-            <div class="grid_3">
-                <div class="fblock-1 wow fadeIn"><a href="./"><img src="{{ asset('/public/images/logo.jpg') }}" alt="" ></a></div>
+            <div class="col-3">
+                <div class="fblock-1"><a href="./"><img src="{{ asset('/public/images/logo.jpg') }}" alt="" ></a></div>
             </div>
-            <div class="preffix_2 grid_6">
+            <div class="preffix_2 col-6">
                 <div class="fblock-2">
-                    <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
+                    <div class="fblock-2_s1">
+                        <span class="fblock-2_s1_s1">GB CONCEPT</span>
+                        &copy; <span id="copyright-year"></span>
+                        | Mentions Légales</div>
                     <p>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO.</p>
                     <p>Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</p>
                 </div>
@@ -462,5 +472,15 @@
         // $ttMo= $qtMo * $pxMo;
         // $ttDep= $qtDep * $pxDep;
     </script><!-- quantités boutons-->
-
+    <script>
+        $('#observation').change(function () {
+            {
+                if (this.checked) {
+                    document.querySelector('#obsClient').style.display = 'block';
+                } else if(!this.checked) {
+                    document.querySelector('#obsClient').style.display = 'none';
+                }
+            }
+        })
+    </script><!--Obsvervation client-->
 {% endblock %}

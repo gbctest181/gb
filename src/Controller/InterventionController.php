@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ClientFinal;
 use App\Entity\Intervention;
 use App\Form\InterventionType;
 use App\Repository\InterventionRepository;
@@ -108,12 +109,14 @@ class InterventionController extends AbstractController
      * //Proces verbal
      * @Route("/procesverbal/{id}", name="intervention_pv", methods={"GET"})
      * @param Intervention $intervention
+     * @param ClientFinal $clientFinal
      * @return Response
      */
-    public function showPV(Intervention $intervention): Response
+    public function showPV(Intervention $intervention, ClientFinal $clientFinal): Response
     {
         return $this->render('intervention/procesverbal.html.twig', [
             'intervention' => $intervention,
+
         ]);
     }
 

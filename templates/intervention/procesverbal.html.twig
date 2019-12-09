@@ -3,124 +3,113 @@
 {% block title %}PROCES VERBAl{% endblock %}
 
 {% block body %}
-    <header class="container-fluid text-center">
+    {#_________Header___________#}
+    <header class="jumbotron-fluid table-dark text-center">
         <div class="Logo"></div>
         <div class="title">
             <h1>PROCES VERBAL</h1>
         </div>
     </header>
+    {#_________Info___________#}
 
-    <article class="container" >
-        <form class="table-dark">
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="group col-md-6">
-                                        Client : {{ intervention.nom }}
-                            </div>
-                        </div>
-                        <div class="group">
-                                     Adresse : {{ intervention.adresse }}
-                        </div>
-                        <div class="row">
-                            <div class="group">
-                                        CP : {{ intervention.codepostal }}
-                            </div>
-                            <div class="group col">
-                                        Ville : {{ intervention.ville }}
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="row" style="border: 1px solid #0a0a0a">
+            <div class="row" >
+                <div class="col">
+                    <br>
+                    <div class="col">
+                        <U>Client</U> : <b>{{intervention.fkclient.raisonSociale}}</b>
+                        <br>({{ intervention.fkclient.responsable }})
                     </div>
-                    <div class="container">
-                <div class="form-group col-md-6">
-                    <label for="descriptif">Objet du marché</label>
-                    <input type="text" class="form-control" id="descriptif">
-                </div>
+                    <div class="col">
+                       <U>Adresse :</U><br>
+                        {{ intervention.fkclient.adresse }}
+                    </div>
+                    <div class="col">
+                        {{ intervention.fkclient.codepostal }} {{ intervention.fkclient.ville }}
                     </div>
                 </div>
-                <div class="col-1"></div>
-                <div class="col-5">
-                    <div class="form-group col-md-6">
-                        Devis n°{{ intervention.id }}
+                <div class="col">
+                    <br>
+                    <div class="col">
+                       <U>Telephone :</U> {{ intervention.fkclient.telephone }}
                     </div>
-                        <div class="row">
-                            <div class="grid_3">
-                                <div class="form-row">Réception
-                                    <div class="form-group col-md-12 ">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="reception" id="definitive1" value="option1" checked>
-                                            <label class="form-check-label" for="definitive1">
-                                        Définitive
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-12 ">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="reception" id="patrielle1" value="option2">
-                                            <label class="form-check-label" for="patrielle1">
-                                        Partielle
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid_3">
-                        <div class="form-row">Mise en service
-                            <div class="form-group col-md-12 ">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="service" id="definitive2" value="option3" checked>
-                                    <label class="form-check-label" for="definitive2">
-                                        Définitive
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group   col-md-12 ">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="service" id="patrielle2" value="option4">
-                                    <label class="form-check-label" for="patrielle2">
-                                        Partielle
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col">
+                        <U>Mobile :</U>  {{ intervention.fkclient.mobile }}
                     </div>
-                        </div>
-                         <div class="form-group">
-                                {#             le bouton apparait si le check est activé                #}
-                             <div class="form-check">
-                                 <input class="form-check-input" type="checkbox" id="reserve">
-                                 <label class="form-check-label" for="reserve">
-                                Réserve (voir observation)
-                                 </label>
-                             </div>
-                         </div>
-                    <button type="button" class="btn btn-primary">Observations</button>
+                    <div class="col">
+                       <U>Fax : </U>  {{ intervention.fkclient.fax }}
+                    </div>
+                    <div class="col">
+                       <U>E-mail :</U>  {{ intervention.fkclient.email }}
+                    </div>
+                    <br>
                 </div>
             </div>
-        </form>
-    </article>
-
-<div class="container">
-
-    <div class="clauses">
-            <p>Le clients atteste, par le présent, que les matériels livrés et installés par GB CONCEPT :</p>
-            <p> <span>&#128073;&#127996;</span>sont conformes aux caractéristiques indiquées dans les documents précisés en référence.</p>
-            <p><span>&#128073;&#127996;</span> sont en bon état de fonctionnement.</p>
-            <p><b><U>Rappel</U> : Les matériels fournis ce jour demeurent la propriété exclusive de l'entreprise GB CONCEPT jusqu'au paiement complet des matériels et prestations par le client.</b></p>
-            <p> <b><U>Responsabilité :</U></b> A compter de ce jour, le client assure l'entière responsabilité des matériels, y compris l'ensemble des obligations d'assurance.</p>
-
+            <div class="row" style="border-left: 1px solid #0a0a0a" >
+                <div class="col">
+                    <br>
+                    <div class="col">
+                        <U>Client :</U> {{ intervention.nom }}
+                    </div>
+                    <div class="col">
+                        <U>Adresse du chantier :</U> <br>
+                        {{ intervention.adresse }}
+                    </div>
+                    <div class="col">
+                        {{ intervention.codepostal }} {{ intervention.ville }}
+                    </div>
+                    <div class="col"><!--Données récupérées de l'API-->
+                        <U>Objet du marché :</U>
+                    </div>
+                </div>
+            </div>
         </div>
-</div>
-    <div class="container ">
+    </div>
+    {#_________Proces verbal___________#}
+    <div class="container">
+        <br>
+        <div class="clauses">
+                <p>Le clients atteste, par le présent, que les matériels livrés et installés par GB CONCEPT :</p>
+                <p> <span>&#128073;&#127996;</span>sont conformes aux caractéristiques indiquées dans les documents précisés en référence.</p>
+                <p><span>&#128073;&#127996;</span> sont en bon état de fonctionnement.</p>
+                <p><b><U>Rappel</U> : Les matériels fournis ce jour demeurent la propriété exclusive de l'entreprise GB CONCEPT jusqu'au paiement complet des matériels et prestations par le client.</b></p>
+                <p> <b><U>Responsabilité :</U></b> A compter de ce jour, le client assure l'entière responsabilité des matériels, y compris l'ensemble des obligations d'assurance.</p>
+        </div>
+    </div><!--Clauses-->
+    <div class="container">
+        <div class="row">
+            <div class="form-check ">
+                <label for="observation"> Observations </label>
+                <input class="form-check-label" type="checkbox" name="observation" id="observation"  >
+            </div>
+            <div class="form-group col-6" id="obsTech" style="display: none" >
+                <label for="obs"></label>
+                <textarea class="form-control" rows="3"  id="obs" placeholder="Observations  :"></textarea>
+            </div>
+        </div>
+    </div><!--Observations-->
+    <div class="container " style="border: 1px solid #0a0a0a">
         <div class="row">
             <div class="col"></div>
             <div class="col-3">
                 <h4>GB CONCEPT</h4>
-                Nom : {#{{ user.username }}#}
+                Nom : nom du technicien{#{{ user.username }}#}
                 <div class="Signature">
-                    <canvas id="signG" width="165" height="48" >Signature</canvas>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <canvas id="sig-canvas" width="250" height="100" style=" border: 2px dotted #CCCCCC; border-radius: 15px; cursor: crosshair; ">
+                                </canvas>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary" id="sig-submitBtn">Ok</button>
+                                <button class="btn btn-default" id="sig-clearBtn">Effacer</button>
+                            </div>
+                        </div>
+                    </div><!--SIGNATURE -->
                 </div>
             </div>
             <div class="col"></div>
@@ -129,7 +118,6 @@
                 <br>
                 <button type="submit" class="btn btn-success ">Envoyer</button>
             </div>
-
             <div class="col"></div>
             <div class="col-3">
                 <h4>LE CLIENT</h4>
@@ -150,26 +138,29 @@
                 </div><!--SIGNATURE -->
             </div>
         </div>
-    </div>
+
+    </div><!--Accord-->
     <div class="retour">
         <button type="button" class="btn btn-danger"><a href="javascript:history.go(-1)">Retour</a></button>
-    </div>
-
-
-<footer class="container-fluid table-dark" id="footer">
-    <div class="row">
-        <div class="grid_3">
-            <div class="fblock-1 wow fadeIn"><a href="./"><img src="/public/images/logo.jpg" alt="" ></a></div>
-        </div>
-        <div class="preffix_2 grid_6">
-            <div class="fblock-2">
-                <div class="fblock-2_s1"><span class="fblock-2_s1_s1">GB CONCEPT</span> &copy; <span id="copyright-year"></span> | Mentions Légales</div>
-                <p>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO.</p>
-                <p>Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</p>
+    </div><!--Bouton retour-->
+    {#_________Footer___________#}
+    <footer class="jumbotron-fluid table-dark" id="footer">
+        <div class="row">
+            <div class="col-3">
+                <div class="fblock-1"><a href="./"><img src="{{ asset('/public/images/logo.jpg') }}" alt="" ></a></div>
+            </div>
+            <div class="preffix_2 col-6">
+                <div class="fblock-2">
+                    <div class="fblock-2_s1">
+                        <span class="fblock-2_s1_s1">GB CONCEPT</span>
+                        &copy; <span id="copyright-year"></span>
+                        | Mentions Légales</div>
+                    <p>SARL GB CONCEPT-181, Rue de St Éxupéry-34130 MAUGUIO.</p>
+                    <p>Tél: 04.20.30.28.28/ Fax: 04.67.82.75.38 Email: contact@gbconcept34.fr - RCS Montpellier 501 826 176</p>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script>
         (function() {
@@ -305,4 +296,15 @@
             }, false);
         })();
     </script><!--SIGNATURE -->
+    <script>
+        $('#observation').change(function () {
+            {
+                if (this.checked) {
+                    document.querySelector('#obsTech').style.display = 'block';
+                } else if(!this.checked) {
+                    document.querySelector('#obsTech').style.display = 'none';
+                }
+            }
+        })
+    </script><!--Obsvervation-->
 {% endblock %}

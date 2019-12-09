@@ -1,0 +1,90 @@
+function getClient(){
+            $code = "4/twGO_RbrTVbvWTG0t5xb__AoVabW7nHNvujlxu4OruLzUYvVg3TCAUw0aGiAEFM4OqlrC-7Npr4gi1Prm2CXVGw";
+            $developperKey = "mr2Ws6bLZG3A09S31P4-IC8d";
+
+            $client = new \Google_Client();
+            $client -> setApplicationName ( "gbctest" );
+            $client ->setDeveloperKey("$developperKey");
+            $client->setAuthConfig('./bundles/client_secret_ID.json');
+            $client->setAccessType('offline');
+            $redirect_uri = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+            $client->setRedirectUri($redirect_uri);
+//_________________________________test_authentification provisoire__________________________
+
+            $client->setScopes((array)Google_Service_Calendar::CALENDAR);
+            $client->setPrompt(' Sélectionner le consentement du compte');
+            $tokenPath = 'token.json';
+            if (file_exists($tokenPath)) {
+                $accessToken = json_decode(file_get_contents($tokenPath), true);
+                $client->setAccessToken($accessToken);
+            }
+            // If there is no previous token or it's expired.
+            if ($client->isAccessTokenExpired()) {
+                // Refresh the token if possible, else fetch a new one.
+                if ($client->getRefreshToken()) {
+                    $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+                } else {
+                    // Request authorization from the user.
+                    $authUrl = $client->createAuthUrl();
+                    printf("Ouvrez le lien dans votre navigateur:"."<br/>"."%s", $authUrl);
+                    print "<br/>".'Entrer le code de vérification : ';
+//                    $authCode = trim(fgets(STDIN));
+                    $authCode ="4/twEcrk-J4X6qEpXwYS22XriAO7hDrs6hFo2owo6SqR8LrwpP-hzr6Bk";
+
+                    // Exchange authorization code for an access token.
+                    $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+                    $client->setAccessToken($accessToken);
+
+                }
+                // Save the token to a file.
+                if (!file_exists(dirname($tokenPath))) {
+                    mkdir(dirname($tokenPath), 0700, true);
+                }
+                file_put_contents($tokenPath, json_encode($client->getAccessToken()));
+            }
+
+//_______________________________________________________________________________
+
+            if(isset($_GET[$code]))
+            {
+                $client->fetchAccessTokenWithAuthCode($_GET[$code]); //code de vérification
+            }
+            return $client;
+        }
+
+        // Get the API client and construct the service object.
+        $client = getClient();
+        $service = new Google_Service_Calendar($client);
+
+        // Print the next 10 events on the user's calendar.
+        $calendarId = 'primary';
+        $optParams = array(
+
+            'maxResults' => 20,
+            'orderBy' => 'startTime',
+            'singleEvents' => true,
+            'timeMin' => date('c')
+
+        );
+        $results = $service->events->listEvents($calendarId, $optParams);
+        $events = $results->getItems();
+
+        if (empty($events)) {
+            print "Pas d'événement.\n";
+        } else {
+            print "Prochains événements:\n";
+            foreach ($events as $event) {
+                $start = $event->start->dateTime;
+                if (empty($start)) {
+                    $start = $event->start->date;
+                }
+                printf("%s (%s)\n", $event->getSummary(), $start);
+            }
+        }
+        return $this->render('client_final/index.html.twig', [
+            'service' => $service,
+            'optparam' => $optParams,
+            'events' =>$events,
+            'client_finals' => $clientFinalRepository->findAll(),
+
+        ]);
