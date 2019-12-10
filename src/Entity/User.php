@@ -147,10 +147,11 @@ class User implements UserInterface
     }
         public function __toString()
     {
-        $format = "%s,%s";
+        $format = "%s,%s,%s";
         return sprintf($format,
             $this->username,
-            $this->password
+            $this->password,
+            $this->roles
         );
     }
 }
